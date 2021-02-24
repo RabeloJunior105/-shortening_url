@@ -4,6 +4,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { UnitExpirationRole } from "./enum/unit_expiration.enum";
 
 @Entity({ name: "url" })
 export class Shorten {
@@ -31,5 +32,5 @@ export class Shorten {
   expiration: number;
 
   @Column("enum")
-  unit_expiration: ["segundos" | "minutos" | "horas" | "dias"]
+  unit_expiration: UnitExpirationRole
 }

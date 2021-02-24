@@ -10,7 +10,7 @@ export class ShortenRepository extends Repository<Shorten> {
   async findById(id: number): Promise<Shorten> {
     return await this.findOne(id);
   }
-
+  
   async findBy(paramToSearch) {
     return await this.findOne({where: paramToSearch});
   }

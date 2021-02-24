@@ -1,7 +1,7 @@
-import {Controller, Get, Res} from "@nestjs/common";
-import { ApiTags } from "@nestjs/swagger";
+import {Controller, Get, Param, Res} from "@nestjs/common";
+import {ApiTags} from "@nestjs/swagger";
 import {AppService} from "./app.service";
-import { ShortenService } from "./modules/shorten/shorten.service";
+import {ShortenService} from "./modules/shorten/shorten.service";
 
 @ApiTags("Shorten")
 @Controller()
@@ -12,7 +12,8 @@ export class AppController {
   ) {}
 
   @Get(":encode")
-  async redirect(@Res() res) {
-    res.status(302).redirect("https://www.google.com.br");
+  async dale(@Res() res, @Param() param) {
+    const url = await this.shortenService.findByParameterUrl(param.encode);
+    res.status(302).redirect(url);
   }
 }

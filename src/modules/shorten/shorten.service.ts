@@ -4,18 +4,43 @@ import {ShortenDTO} from "./dto/shorten.dto";
 import {ShortenRepository} from "./shorten.repository";
 import {GenerateStringService} from "src/shared/generate-string/generate-string.service";
 import {UrlShortenDto} from "./dto/create.dto";
+import {UrlShortenNotFound} from "./exception/urlShortenNotFound";
+import {UrlDTO} from "./dto/url.dto";
+import {check} from "prettier";
+import {UnitExpirationRole} from "./enum/unit_expiration.enum";
+import {UrlShortenIsExpiration} from "./exception/urlShortenIsExpiration";
+import {DateActionsService} from "src/shared/date-actions/date-actions.service";
 
 @Injectable()
 export class ShortenService {
   constructor(
     private shortenRepository: ShortenRepository,
     private generateStringService: GenerateStringService,
+    private dateActionsService: DateActionsService,
   ) {}
-  async findByParameterUrl() {}
+  async findByParameterUrl(encode: string) {
+    const checkTokenGenerate = await this.shortenRepository.findBy({
+      token_shortener: encode,
+    });
+
+    if (!checkTokenGenerate) throw new UrlShortenNotFound();
+
+    const checkDateIsValid = await this.dateActionsService.isAfterDate(
+      new Date(Date.now()),
+      checkTokenGenerate.dt_create,
+      checkTokenGenerate.unit_expiration,
+      checkTokenGenerate.expiration,
+    );
+
+    if (!checkDateIsValid) {
+      throw new UrlShortenIsExpiration();
+    }
+
+    return checkTokenGenerate.url_normal;
+  }
 
   async shorten(urlToShorten: UrlShortenInDto) {
-    const generateToken = await this.generateStringService.generate();
-
+    const generateToken = await this.generateStringService.generate(5, 10);
     const checkTokenExists = await this.shortenRepository.findBy({
       token_shortener: generateToken,
     });
@@ -32,6 +57,6 @@ export class ShortenService {
 
     await this.shortenRepository.store(urlShorten);
 
-    return {newUrl: process.env.URL_SERVER + urlShorten.token_shortener};
+    return new UrlDTO(urlShorten.token_shortener);
   }
 }
