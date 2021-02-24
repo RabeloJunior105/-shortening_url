@@ -121,12 +121,8 @@ Documentação da API feita com o swagger [Swagger Docs](https://shorten-wiser-e
 
   
 
-```markdown
-[![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=https://github.com/RabeloJunior105)](https://github.com/RabeloJunior105)
-[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/junior-rabelo-04b744185/)](https://www.linkedin.com/in/junior-rabelo-04b744185/)
+[![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=https://github.com/RabeloJunior105)](https://github.com/RabeloJunior105) [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/junior-rabelo-04b744185/)](https://www.linkedin.com/in/junior-rabelo-04b744185/)
 
-
-```
 
   
 
