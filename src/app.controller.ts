@@ -14,6 +14,6 @@ export class AppController {
   @Get(":encode")
   async dale(@Res() res, @Param() param) {
     const url = await this.shortenService.findByParameterUrl(param.encode);
-    res.status(302).redirect(url);
+    res.status(302).redirect(url.url_normal);
   }
 }

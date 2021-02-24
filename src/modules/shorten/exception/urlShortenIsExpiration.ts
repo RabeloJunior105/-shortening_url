@@ -1,4 +1,4 @@
-import {AppError} from "src/shared/error/AppError";
+import {AppError} from "../../../shared/error/AppError";
 
 export class UrlShortenIsExpiration extends AppError {
   constructor() {

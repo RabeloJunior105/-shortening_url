@@ -1,7 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { GenerateStringService } from '../generate-string.service';
+import {Test, TestingModule} from "@nestjs/testing";
+import {GenerateStringService} from "../generate-string.service";
 
-describe('GenerateStringService', () => {
+describe("GenerateStringService", () => {
   let service: GenerateStringService;
 
   beforeEach(async () => {
@@ -12,7 +12,7 @@ describe('GenerateStringService', () => {
     service = module.get<GenerateStringService>(GenerateStringService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it("should be defined", () => {
+    expect(service.generate(5, 10)).toBeDefined();
   });
 });

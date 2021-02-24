@@ -1,15 +1,13 @@
 import {Injectable} from "@nestjs/common";
 import {UrlShortenInDto} from "./dto/create-in.dto";
-import {ShortenDTO} from "./dto/shorten.dto";
 import {ShortenRepository} from "./shorten.repository";
-import {GenerateStringService} from "src/shared/generate-string/generate-string.service";
+import {GenerateStringService} from "../../shared/generate-string/generate-string.service";
 import {UrlShortenDto} from "./dto/create.dto";
 import {UrlShortenNotFound} from "./exception/urlShortenNotFound";
 import {UrlDTO} from "./dto/url.dto";
-import {check} from "prettier";
-import {UnitExpirationRole} from "./enum/unit_expiration.enum";
 import {UrlShortenIsExpiration} from "./exception/urlShortenIsExpiration";
-import {DateActionsService} from "src/shared/date-actions/date-actions.service";
+import {DateActionsService} from "../../shared/date-actions/date-actions.service";
+import { ShortenDTO } from "./dto/shorten.dto";
 
 @Injectable()
 export class ShortenService {
@@ -36,19 +34,19 @@ export class ShortenService {
       throw new UrlShortenIsExpiration();
     }
 
-    return checkTokenGenerate.url_normal;
+    return checkTokenGenerate;
   }
 
-  async shorten(urlToShorten: UrlShortenInDto) {
+  async shorten(urlToShorten: UrlShortenInDto): Promise<UrlDTO>{
     const generateToken = await this.generateStringService.generate(5, 10);
     const checkTokenExists = await this.shortenRepository.findBy({
       token_shortener: generateToken,
     });
 
-    if (checkTokenExists) {
-      return checkTokenExists.url_normal;
+    /*if (checkTokenExists &&) {
+      return checkTokenExists;
     }
-
+*/
     const urlShorten = new UrlShortenDto();
     urlShorten.url_normal = urlToShorten.url;
     urlShorten.token_shortener = generateToken;

@@ -15,7 +15,6 @@ export class UrlShortenInDto {
    * 
    * 
    */
-  id: number;
 
   @ApiProperty({
     example: "www.google.com.br",
@@ -31,7 +30,7 @@ export class UrlShortenInDto {
   })
   @IsOptional()
   @IsNumber()
-  expiration: number;
+  expiration?: number;
 
   @ApiPropertyOptional({
     example: "segundos",
@@ -42,5 +41,5 @@ export class UrlShortenInDto {
   })
   @IsOptional()
   @IsEnum(UnitExpirationRole, { each: true })
-  unit_expiration: UnitExpirationRole;
+  unit_expiration?: UnitExpirationRole;
 }

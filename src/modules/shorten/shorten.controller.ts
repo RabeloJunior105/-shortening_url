@@ -1,6 +1,6 @@
-import {Body, Controller, Get, Post, Redirect, Res} from "@nestjs/common";
+import {ValidationPipe} from "../../shared/pipes/validation.pipe";
+import {Body, Controller, Post} from "@nestjs/common";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {ValidationPipe} from "src/shared/pipes/validation.pipe";
 import {UrlShortenInDto} from "./dto/create-in.dto";
 import {ShortenService} from "./shorten.service";
 
