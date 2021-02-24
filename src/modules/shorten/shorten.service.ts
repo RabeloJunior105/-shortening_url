@@ -7,7 +7,7 @@ import {UrlShortenNotFound} from "./exception/urlShortenNotFound";
 import {UrlDTO} from "./dto/url.dto";
 import {UrlShortenIsExpiration} from "./exception/urlShortenIsExpiration";
 import {DateActionsService} from "../../shared/date-actions/date-actions.service";
-import { ShortenDTO } from "./dto/shorten.dto";
+import {ShortenDTO} from "./dto/shorten.dto";
 
 @Injectable()
 export class ShortenService {
@@ -37,16 +37,24 @@ export class ShortenService {
     return checkTokenGenerate;
   }
 
-  async shorten(urlToShorten: UrlShortenInDto): Promise<UrlDTO>{
+  async shorten(urlToShorten: UrlShortenInDto): Promise<UrlDTO> {
     const generateToken = await this.generateStringService.generate(5, 10);
     const checkTokenExists = await this.shortenRepository.findBy({
       token_shortener: generateToken,
     });
 
-    /*if (checkTokenExists &&) {
-      return checkTokenExists;
+    if (checkTokenExists) {
+      const checkDateIsValid = await this.dateActionsService.isAfterDate(
+        new Date(Date.now()),
+        checkTokenExists.dt_create,
+        checkTokenExists.unit_expiration,
+        checkTokenExists.expiration,
+      );
+
+      if (checkDateIsValid) {
+        return new UrlDTO(checkTokenExists.url_normal);
+      }
     }
-*/
     const urlShorten = new UrlShortenDto();
     urlShorten.url_normal = urlToShorten.url;
     urlShorten.token_shortener = generateToken;
