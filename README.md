@@ -115,7 +115,7 @@ $ npm run test:cov || yarn test:cov
 
 Documentação da API feita com o swagger [Swagger Docs](https://shorten-wiser-education.herokuapp.com/docs).
 
-###Rotas
+### Rotas
 
 Encurtamento:
 
@@ -140,7 +140,7 @@ Sabendo que:
 expiration tem valor default como 10.
 Unit_expiration tem valor default como minutos
 
-####Resultado da Rota
+#### Resultado da Rota
 ```json
 {
   "newUrl": "https://shorten-wiser-education.herokuapp.com/0jym3vpbd"
@@ -150,7 +150,7 @@ Unit_expiration tem valor default como minutos
 
 Ao acessar está rota automaticamente irá ser redirecionado para:
 
-####Redirecionamento
+#### Redirecionamento
 
 Está rota vai receber como parametro um encode que seria a URL encurtada
 exemplo: 
@@ -164,7 +164,9 @@ a requisição deve ser feita nesta estrutura
 
 
 >GET |  [URL]/0jym3vpbd 
->Exemplo Real: https://shorten-wiser-education.herokuapp.com/0jym3vpbd
+
+Exemplo Real:
+> https://shorten-wiser-education.herokuapp.com/0jym3vpbd
 
 
 ## Redes Sociais
