@@ -113,7 +113,7 @@ $ npm run test:cov || yarn test:cov
 
   
 
-Documentação da API feita com o swagger [Swagger Docs](https://shorten-wiser-education.herokuapp.com/docs).
+Documentação da API feita com o swagger, para visualizar a documentação [Clique aqui](https://shorten-wiser-education.herokuapp.com/docs).
 
 ### Rotas
 
