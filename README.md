@@ -115,7 +115,57 @@ $ npm run test:cov || yarn test:cov
 
 Documentação da API feita com o swagger [Swagger Docs](https://shorten-wiser-education.herokuapp.com/docs).
 
+###Rotas
+
+Encurtamento:
+
+
+>ROTA: [POST] {{URL}}/shorten 
+
+Nesta rota será enviada pelo corpo da requisição as seguintes informações:
+body:
+```json
+{
+	// URL que irá ser encurtada
+  "url": "www.google.com.br", 
+  //Valor temporal de expiração da URL encurtada
+  "expiration": 15,  
+  // Unidade de medida do tempo  para calcular a data de expiração
+  "unit_expiration": "segundos"
   
+}
+
+```
+Sabendo que:
+expiration tem valor default como 10.
+Unit_expiration tem valor default como minutos
+
+####Resultado da Rota
+```json
+{
+  "newUrl": "https://shorten-wiser-education.herokuapp.com/0jym3vpbd"
+}
+
+```
+
+Ao acessar está rota automaticamente irá ser redirecionado para:
+
+####Redirecionamento
+
+Está rota vai receber como parametro um encode que seria a URL encurtada
+exemplo: 
+https://shorten-wiser-education.herokuapp.com/0jym3vpbd
+
+Ultilizando está url como exemplo o encode desta url seria {0jym3vpbd}
+
+logo para acessar esta rota e ser redirecionado para seu link inicial
+
+a requisição deve ser feita nesta estrutura
+
+
+>GET |  [URL]/0jym3vpbd 
+>Exemplo Real: https://shorten-wiser-education.herokuapp.com/0jym3vpbd
+
 
 ## Redes Sociais
 
